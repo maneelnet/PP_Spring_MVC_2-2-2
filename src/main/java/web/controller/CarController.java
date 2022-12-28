@@ -17,8 +17,10 @@ public class CarController {
     public String showCars(@RequestParam(value = "count", required = false) Integer count, Model model) {
         if (count == null) {
             model.addAttribute("cars", carService.showAllCars());
+        } else if (count < 0) {
+            model.addAttribute("cars", "count can't be negative");
         } else {
-            model.addAttribute("cars", carService.showCars(count.intValue()));
+            model.addAttribute("cars", carService.showCars(count));
         }
         return "cars";
     }

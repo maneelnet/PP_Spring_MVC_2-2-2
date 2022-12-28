@@ -28,15 +28,8 @@ public class CarDAOImp implements CarDAO {
 
     @Override
     public List<Car> showCars(int count) {
-        if (count < 5) {
-            List<Car> secondCarsList = new ArrayList<>(carsList);
-            for (int i = carsList.size() - 1; i >= count; i--) {
-                secondCarsList.remove(i);
-            }
-            return secondCarsList;
-        } else {
-            return carsList;
-        }
+
+        return carsList.stream().limit(count).toList();
     }
 
 }
